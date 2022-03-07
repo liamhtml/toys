@@ -5,20 +5,120 @@
   </head>
   <body>
     <h1>omg so clocc</h1>
-    <canvas id="clocc" width="150" height="150">o noes 😯 your browser dont support canvas (cringe)</canvas>
+    <canvas id="clocc" width="300" height="300">o noes 😱😫😥 your browser dont support canvas (cringe)</canvas>
     <p id="time"></p>
-    <p>hello there</p>
-    <script>
-      console.log('haha ur mom');
+    <p>wow so cloc</p>
+    <script> 
+      let canvas = document.getElementById('clocc');
+      let width = canvas.width;
+      let ctx = canvas.getContext('2d');
+      ctx.translate(width / 2, width / 2);
       function drawClocc() {
+        console.log('drawClocc()')
+        // time
+        let date = new Date();
+
         let timePara = document.getElementById('time');
-        timePara.innerHTML = new Date().toLocaleTimeString()
-        
-        let canvas = document.getElementById('clocc');
-        let width = canvas.width;
-        let ctx = canvas.getContext('2d');
-        
-        ctx.fillRect(width/4, width/4, width * 0.75, width * 0.75);
+        timePara.innerHTML = date.toLocaleTimeString()
+
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+
+        let hourAngle = hours * 30;
+        let prevHourAngle = (hours - 1) * 6;
+        let minuteAngle = minutes * 6;
+        let prevMinuteAngle = (minutes - 1) * 6;
+        let secondAngle = seconds * 6;
+        let prevSecondAngle = (seconds - 1) * 6;
+
+        // hour hand
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 6.5;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.rotate(prevHourAngle * Math.PI / 180);
+        ctx.lineTo(0, -width / 2);
+        ctx.stroke();
+        ctx.rotate(-prevHourAngle * Math.PI / 180);
+
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 5;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.rotate(hourAngle * Math.PI / 180);
+        ctx.lineTo(0, -width / 2 + 85);
+        ctx.stroke();
+        ctx.rotate(-hourAngle * Math.PI / 180);
+
+        // minute hand
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 4;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.rotate(prevMinuteAngle * Math.PI / 180);
+        ctx.lineTo(0, -width / 2);
+        ctx.stroke();
+        ctx.rotate(-prevMinuteAngle * Math.PI / 180);
+
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.rotate(minuteAngle * Math.PI / 180);
+        ctx.lineTo(0, -width / 2 + 20);
+        ctx.stroke();
+        ctx.rotate(-minuteAngle * Math.PI / 180);
+
+        // second hand
+        ctx.strokeStyle = 'white';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.rotate(prevSecondAngle * Math.PI / 180);
+        ctx.lineTo(0, -width / 2);
+        ctx.stroke();
+        ctx.rotate(-prevSecondAngle * Math.PI / 180);
+
+        ctx.strokeStyle = 'black';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.rotate(secondAngle * Math.PI / 180);
+        ctx.lineTo(0, -width / 2 + 10);
+        ctx.stroke();
+        ctx.rotate(-secondAngle * Math.PI / 180);
+
+        // outer circle
+        ctx.beginPath();
+        ctx.arc(0, 0, width / 2, Math.PI / 2, Math.PI * 3);
+        ctx.stroke();
+
+        // hour marks
+        for (let i = 1; i < 13; i++) {
+          let hourMarkAngle = i * 30;
+          ctx.strokeStyle = 'black';
+          ctx.lineWidth = 2.5;
+          ctx.beginPath();
+          ctx.rotate(hourMarkAngle * Math.PI / 180);
+          ctx.moveTo(0, -width / 2);
+          ctx.lineTo(0, -width / 2 + 20);
+          ctx.stroke();
+          ctx.rotate(-hourMarkAngle * Math.PI / 180);
+        }
+
+        // minute marks
+        for (let i = 1; i < 61; i++) {
+          let minuteMarkAngle = i * 6;
+          ctx.strokeStyle = 'black';
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.rotate(minuteMarkAngle * Math.PI / 180);
+          ctx.moveTo(0, -width / 2);
+          ctx.lineTo(0, -width / 2 + 10);
+          ctx.stroke();
+          ctx.rotate(-minuteMarkAngle * Math.PI / 180);
+        }
       }
       
       setInterval(drawClocc, 1000);
