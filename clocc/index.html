@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>clocc</title>
+  </head>
+  <body>
+    <h1>omg so clocc</h1>
+    <canvas id="clocc" width="150" height="150">o noes 😯 your browser dont support canvas (cringe)</canvas>
+    <p id="time"></p>
+    <p>hello there</p>
+    <script>
+      console.log('haha ur mom');
+      function drawClocc() {
+        let timePara = document.getElementById('time');
+        timePara.innerHTML = new Date().toLocaleTimeString()
+        
+        let canvas = document.getElementById('clocc');
+        let width = canvas.width;
+        let ctx = canvas.getContext('2d');
+        
+        ctx.fillRect(width/4, width/4, width * 0.75, width * 0.75);
+      }
+      
+      setInterval(drawClocc, 1000);
+    </script>
+  </body>
+</html>
